@@ -8,10 +8,12 @@ import {
   Route,
 } from "react-router-dom";
 
+
  const App =()=> {
     return (
       <div>
         <Router>
+       
         <Navbar/>
         <Routes>
             <Route exact path="/" element={<News key="general" country="in" category="all"/>}></Route>

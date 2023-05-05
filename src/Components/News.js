@@ -14,7 +14,7 @@ const News = (props) => {
 
   useEffect(() => {
     axios
-      .get(`https://fragile-pear-umbrella.cyclic.app/https://inshorts.deta.dev/news?category=${props.category}`)
+      .get(`https://inshorts.deta.dev/news?category=${props.category}`)
       .then((response) => {
         setLoader(false);
         setArticles(response.data.data);

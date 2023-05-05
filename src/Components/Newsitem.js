@@ -1,8 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from "react";
+import translate from "translate";
+import { LanguageContext } from './TranslateSwitch'
 
 const Newsitem = (props) => {
-  const { title, description, imageUrl, newsUrl, author, date, key } = props;
+  const { title, description, imageUrl, newsUrl, date, key} = props;
   const [showDescription, setShowDescription] = useState(false);
+  const [translatedTitle, setTranslatedTitle] = useState("");
+  const [translatedDescription, setTranslatedDescription] = useState("");
+  const selectedLanguage = useContext(LanguageContext);
+
+  useEffect(() => {
+    console.log(selectedLanguage);
+    const translateTitleAndDescription = async () => {
+      const [translatedTitle, translatedDescription] = await Promise.all([
+        translate(title, { to: selectedLanguage }),
+        translate(description, { to: selectedLanguage }),
+      ]);
+      setTranslatedTitle(translatedTitle);
+      setTranslatedDescription(translatedDescription);
+    };
+    translateTitleAndDescription();
+  }, [title, description, selectedLanguage]);
 
   const handleReadMore = () => {
     setShowDescription(!showDescription);
@@ -13,8 +31,12 @@ const Newsitem = (props) => {
       <div className='card' style={{ width: '18rem' }}>
         <img src={imageUrl} className='card-img-top' alt='...' />
         <div className='card-body'>
-          <h5 className='card-title'>{title}</h5>
-          {showDescription && <p className='card-text'>{description}</p>}
+          <h5 className='card-title'>{translatedTitle || title}</h5>
+          {showDescription && (
+            <p className='card-text'>
+              {translatedDescription || description}
+            </p>
+          )}
           <p className='card-text'>
             <small className='text-muted'>{date}</small>
           </p>

@@ -5,10 +5,8 @@ export const LanguageContext = React.createContext();
 console.log(LanguageContext.message)
 
 const LanguageSwitcherx = () => {
-  // Initialize state to English
   
   const [language, setLanguage] = useState('en');
-  // Define language options
   const languageOptions = [
     { label: 'ENGLISH', value: 'en' },
     { label: 'മലയാളം', value: 'ml' },
@@ -16,7 +14,6 @@ const LanguageSwitcherx = () => {
     { label: 'Français', value: 'fr' },
   ];
 
-  // Handle language change
   const handleLanguageChange = (event) => {
     setLanguage(event.target.value);
     console.log(setLanguage)

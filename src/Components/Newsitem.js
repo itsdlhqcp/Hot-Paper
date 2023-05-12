@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import translate from "translate";
+//import context
 import { LanguageContext } from './TranslateSwitch'
 
 const Newsitem = (props) => {
@@ -7,6 +8,7 @@ const Newsitem = (props) => {
   const [showDescription, setShowDescription] = useState(false);
   const [translatedTitle, setTranslatedTitle] = useState("");
   const [translatedDescription, setTranslatedDescription] = useState("");
+  //context
   const selectedLanguage = useContext(LanguageContext);
 
   useEffect(() => {

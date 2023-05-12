@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import '../index.css'
-
+//exporting l;anguage context
 export const LanguageContext = React.createContext();
-console.log(LanguageContext.message)
 
 const LanguageSwitcherx = () => {
   
@@ -26,6 +25,7 @@ console.log(language)
   };
 
   return (
+    //value assigned for context
     <LanguageContext.Provider value={language}>
     <div className="language-switcher">
       {showLanguageSwitcher ? (
